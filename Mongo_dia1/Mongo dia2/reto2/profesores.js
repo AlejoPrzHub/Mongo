@@ -6,5 +6,5 @@ const ProfesoresSchema = new mongoose.Schema({
     apellido:String,
     grupos:[String]
 })
-ProfesoresSchema.add({asignaturas:[AsignaturasSchema]})
+
 module.exports = mongoose.model("Profesor", ProfesoresSchema)    
