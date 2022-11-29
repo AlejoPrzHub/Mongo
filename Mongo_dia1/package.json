@@ -1,5 +1,16 @@
 {
   "dependencies": {
-    "mongoose": "^6.7.3"
-  }
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.4"
+  },
+  "name": "mongo_dia1",
+  "version": "1.0.0",
+  "main": "Creedentials.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
