@@ -91,7 +91,7 @@ let nota1 = new MarksModel({fecha:2020-10-10,
                                 //RESTO1.5
 
 // MarksModel
-// .aggregate([{$group:{_id:"$nombreGrupo","total":         {"$sum":1}},
+// .aggregate([{$group:{_id:"$nombreGrupo","total": {"$sum":1}},
 //                 $sort:{"total":-1}}])
 // .then((result) =>
 // {
@@ -119,7 +119,8 @@ let nota1 = new MarksModel({fecha:2020-10-10,
                                 //RETO 1.7
 
 // MarksModel
-// .aggregate([{$group:{_id:{nombre:"$profesores.nombreProfe",asignatura:"$nombreAsignatura"},"total":{$sum:1}}}])
+// .aggregate([{$group:{_id:{asignatura:"$nombreAsignatura","total": {"$sum":1}}}}
+// ])
 // .then((result) =>
 // {
 //     console.log(result);
@@ -134,9 +135,47 @@ let nota1 = new MarksModel({fecha:2020-10-10,
 // aggregate([{$project:{  nombre:"$NombreEstudiante",
 //                         apellido:"$ApellidoEstudiante",
 //                         "notas":"$nota",
-//                         _id:0},
-//             $match:{"notas":{$gt:8}}
+//                         _id:0}},
+//             {$match:{$or:[{"notas":{$gt:8}},{"fecha":{"$lt": new Date(2021,11,24)}}]}
 // }])
+// .then((result) =>
+// {
+//     console.log(result);
+// })
+// .catch((error)=>
+// {console.log(error)})
+
+                                //RETO 2.2
+
+// MarksModel.
+// aggregate([{$project:{_id:"$nombreAsignatura",fecha:"$fecha",notas:{$avg:"$nota"}}},
+//             {$match:{fecha:{"$gt": new Date(2020,11,24)}}}
+// ])
+// .then((result) =>
+// {
+//     console.log(result);
+// })
+// .catch((error)=>
+// {console.log(error)})
+
+                                //RETO 2.3
+
+// MarksModel.
+// aggregate([{$project:{_id:"$NombreEstudiante",fecha:"$fecha",notas:{$avg:"$nota"}}},
+//             {$match:{fecha:{"$gt": new Date(2020,11,24)}}}
+// ])
+// .then((result) =>
+// {
+//     console.log(result);
+// })
+// .catch((error)=>
+// {console.log(error)})
+
+                                //RETO 2.4
+// MarksModel
+// .aggregate([{$project:{_id:"$NombreEstudiante","asignaturas": {"$sum":1},profe:"$profesores.nombreProfe"}},
+//             {$match:{profe:"Pedro"}}
+//             ])
 // .then((result) =>
 // {
 //     console.log(result);

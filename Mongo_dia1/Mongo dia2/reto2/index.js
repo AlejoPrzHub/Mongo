@@ -78,12 +78,12 @@ let profesor5 = new ProfesorModelo({nombre:"pepote",apellido:"mercado",grupos:["
 // .then(function(){console.log("Documentos creados Correctamete")})
 // .catch(function(){console.log("Error al insertar el documento")})
 
-NotasModelo.find({'Estudiantes.nombre': 'juan'},
-function(error,nota)
-{
-    if(error) console.log("Error")
-    else console.log(nota)
-})
+// NotasModelo.find({'Estudiantes.nombre': 'juan'},
+// function(error,nota)
+// {
+//     if(error) console.log("Error")
+//     else console.log(nota)
+// })
 
 AsignaturasModelo.find({'nota.Estudiantes.nombre': 'juan'},
 function(error,nota)
@@ -98,3 +98,5 @@ function(error,nota)
     if(error) console.log("Error")
     else console.log(nota)
 })
+
+
