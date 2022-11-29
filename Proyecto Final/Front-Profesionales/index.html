@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+    <title>Documento</title>
+</head>
+<body>
+    <div class="container">
+        <div class="cuerpo">
+            <div class="header">
+                <h1>Professional API</h1>
+            </div>
+            <div class="centro">
+                <div class="preformulario">
+                    <div class="formulario">
+                        <h3>Professional</h3>
+                        <input class="componente" id="nome" type="text" placeholder="Name">
+                        <input class="componente" id="profession" type="text" placeholder="Profession">
+                        <input class="componente" id="age" type="text" placeholder="Age">
+                        <input class="componente" id="weight" type="text" placeholder="Weight">
+                        <input class="componente" id="height" type="text" placeholder="Height">
+                        <input class="componente" id="nationality" type="text" placeholder="Nationality">
+                        <input class="componente" id="id" type="text" placeholder="Id">
+                        <div class="botones">
+                            <input class="boton" type="submit" value="Crear" onclick = "postProfessional()">
+                            <input class="boton" type="button" value="Mostrar" onclick="getProfessional()">
+                            <input class="boton" type="button" value="Actualizar" onclick="putProfessional()">
+                            <input class="boton" type="button" value="Eliminar" onclick="delProfessional()">
+                        </div>
+                        
+                    </div>
+                </div>
+                <div id="prof"class="prof">
+                    <!-- <div class="card">
+                        <p>Name: </p>
+                        <p>Profession: </p>
+                        <p>Age: </p>
+                        <p>Weight: </p>
+                        <p>Height: </p>
+                        <p>Is Retired?: </p>
+                        <p>Nationality: </p> -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
