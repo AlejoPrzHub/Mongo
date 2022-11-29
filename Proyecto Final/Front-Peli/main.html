@@ -5,57 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="main.css">
-    <title>IMDB</title>
+    <title>Peliculas API</title>
 </head>
 <body>
-
     <div class="container">
         <div class="cuerpo">
             <div class="header">
-                <div class="imdb"><img src="img/imdbimg-removebg-preview.png"></div>
-                <div class="secciones">
-                    <li class="lista">
-                        <a class="enlaces" href="#">Portada</a>
-                        <a class="enlaces cta" id="modal" href="#">Peliculas</a>
-                    </li>
-                </div>
+                <h1>Peliculas API</h1>
             </div>
-
-
-                <div class="centro">
-                    ¡AGREGA TU PROPIA PELI!
-
-
-                </div>
-        </div>
-    </div>
-
+            <div class="centro">
             <div class="preformulario">
                 <form class="formulario" enctype="multipart/form-data">
-                    <input class="controles" id="imgAdd" type="file" name="select img">
                     <input class="controles" id="titulo" type="text" placeholder="Titulo">
                     <input class="controles" id="anyo" type="text" placeholder="Año de lanzamiento">
                     <input class="controles" id="genero" type="text" placeholder="Genero">
-                    <input class="controles" id="idioma" type="text" placeholder="Idioma">
-                    <input class="controles" id="plataforma" type="text" placeholder="Plataforma">
-                    <input class="controles" id="mcu" type="text" placeholder="Es MCU?">
-                    <input class="controles boton" id="subir" type= "reset" value="SUBIR" onclick= "agregarPeliculas()">
+                    <input class="controles" id="director" type="text" placeholder="Director">
+                    <input class="controles" id="guionista" type="text" placeholder="Guionista">
+                    <input class="controles" id="producer" type="text" placeholder="Producer">
+                    <input class="controles" id="actores" type="text" placeholder="Actores">
+                    <input class="controles" id="idFront" type="text" placeholder="Id">
+                    <input class="controles boton" id="subir" type= "reset" value="CREAR" onclick= "postPeliculas()">
+                    <input class="controles boton" id="subir" type= "reset" value="MOSTRAR" onclick= "getPeliculas()">
+                    <input class="controles boton" id="subir" type= "reset" value="ACTUALIZAR" onclick= "putPeliculas()">
+                    <input class="controles boton" id="subir" type= "reset" value="BORRAR" onclick= "delPeliculas()">
                 </form>
             </div>  
 
-
-
-            <!-- modal -->
-
-            <div class="modal-container">
-                
-                <div class="modal modal-close">
-                    <h2 class="modal-title">TUS PELICULAS</h2>
-                    <p class="close">X</p>
-                    <div id="modal-cuerpo" class="modal-cuerpo">
-                        <!-- <div class="pelicula" id="peliculas">
-                            <div class="peli"><img src= ${peli.photo} alt=""></div>
-                            <div class="contenido">
+        <div class="pelicula" id="peliculas">
+                            <!-- <div class="contenido">
                                 <p id="t1">${peli.title}</p>
                                 <p id="t2">${peli.releaseYear}</p>
                                 <p id="t3">${peli.genre}</p>
@@ -64,30 +41,11 @@
                                 <p id="t6">${peli.isMCU}</p>
                             </div>
                         </div> -->
-                       
-
-                    
-
-                    </div>
-                </div> 
-
-            </div>
-
-
-
-
         
-
-
-
-
-
-
-
-
-
-
-
+            </div>
+        </div>
+    </div>
+</div>
 
     </div>
     <script src="main.js"></script>

@@ -1,16 +1,16 @@
 // clases
 class Movie
 {
-    constructor(title,releaseYear,{actors},genre,{director},producer,{guionista})
+    constructor(title,releaseYear,[actors],genre,[director],producer,[guionista])
     {
 
         this.title = title;
         this.releaseYear = releaseYear;
         this.genre = genre;
-        this.director = {director};
-        this.guionista = {guionista};
+        this.director = [director];
+        this.guionista = [guionista];
         this.producer = producer;
-        this.actors = {actors};
+        this.actors = [actors];
     }
 
     printAll()
@@ -28,76 +28,142 @@ class Movie
 }
 
 
-
-// modal
-
-let cerrar = document.querySelectorAll(".close")[0];
-let abrir = document.getElementById("modal");
-let modal = document.querySelectorAll(".modal")[0];
-let modalC = document.querySelectorAll(".modal-container")[0];
-
-abrir.addEventListener("click",function(e)
-{
-    e.preventDefault();
-    modalC.style.opacity ="1";
-    modalC.style.visibility = "visible";
-    modal.classList.toggle("modal-close")
-
-});
-
-cerrar.addEventListener("click",function()
-{
-    
-    modal.classList.toggle("modal-close")
-    setTimeout(function()
-    {modalC.style.opacity ="0";
-    modalC.style.visibility = "hidden";},700)
-});
-
-
 // funciones
 
-let peliculas=[];
-
-function agregarPeliculas()
+async function getPeliculas()
 {
-    let imagen = document.getElementById("imgAdd");
-    let titulo = document.getElementById("titulo");
-    let anyo = document.getElementById("anyo");
-    let genero = document.getElementById("genero");
-    let idioma = document.getElementById("idioma");
-    let plataforma = document.getElementById("plataforma");
-    let mcu = document.getElementById("mcu");
+        try
+        {
+            let idFront = document.getElementById("idFront").value
+            
+            let url;
+            if(idFront =="")
+            {
+                url = `http://localhost:3000/Peliculas`
+            }
+            else(url = `http://localhost:3000/Peliculas/?id=${idFront}`)
+            let param =
+            {
+                headers:{"Content-type":"application/json;charset=UTF-8"},
+                method:"GET"
+            }
+            
+            let data = await fetch(url,param);
+            let result = await data.json()
+            console.log(result);
+            let tarjeta = document.getElementById("peliculas")
+            let div = document.createElement("div")
+            
+            if(result.length > 1)
+            {
+            tarjeta.innerHTML = "" 
+            for(let i=0;i<result.length;i++)
+            {div.innerHTML +=
+                (`<div class="contenido">
+                <p>Titulo: ${result[i].title}</p>
+                <p>Año lanzamiento: ${result[i].releaseYear} </p>
+                <p>Genero: ${result[i].genre} </p>
+                <p>Director: ${result[i].director} </p>
+                <p>Guionista: ${result[i].guionista}</p>
+                <p>Productor: ${result[i].producer}</p>
+                <p>Actores: ${result[i].actors}</p>`)
+                tarjeta.appendChild(div)}}
 
-    let peli = new Movie(imagen.value,titulo.value,anyo.value,genero.value,0,genero.value,0,0,0,idioma.value,plataforma.value,mcu.value,0,0);
-
-    
-    const cuerpo = document.getElementById("modal-cuerpo");
-    function mostrarPeliculas()
-    {
-        const div = document.createElement(`div`);
-        div.innerHTML=
-        `
-        <div class="pelicula" id="peliculas">
-                            <div class="peli"><img src="img/El_Cover-669626430-large.jpg" alt=""></div>
-                            <div class="contenido">
-                                <p id="t1">${peli.title}</p>
-                                <p id="t2">${peli.releaseYear}</p>
-                                <p id="t3">${peli.genre}</p>
-                                <p id="t4">${peli.language}</p>
-                                <p id="t5">${peli.plataforma}</p>
-                                <p id="t6">${peli.isMCU}</p>
-                            </div>
-                        </div>
-        `
-        cuerpo.appendChild(div);
-    }
-
-    peliculas.push(peli);
-    mostrarPeliculas(peliculas)
-
+            else 
+                {div.innerHTML =( 
+                `<div class="contenido">
+                <p>Titulo: ${result.title}</p>
+                <p>Año lanzamiento: ${result.releaseYear} </p>
+                <p>Genero: ${result.genre} </p>
+                <p>Director: ${result.director} </p>
+                <p>Guionista: ${result.guionista}</p>
+                <p>Productor: ${result.producer}</p>
+                <p>Actores: ${result.actors}</p>`)
+                tarjeta.appendChild(div)}
+ 
+        }
+        catch(error){console.log(error)}
 }
 
+async function delPeliculas()
+{
+    try
+    {
+        let id = document.getElementById("idFront").value
+        let url = "http://localhost:3000/Peliculas";
+        let param =
+        {
+            headers:{"Content-type":"application/json;charset=UTF-8"},
+            body:JSON.stringify({"_id": id}),
+            method:"DELETE"
+        }
+
+        let data = await fetch(url,param);
+        let result = await data.json()
+        
+        console.log(result)
+    }
+    catch(error){console.log(error)}
+}
+
+async function putPeliculas()
+{
+        try
+        {
+            let idFront = document.getElementById("idFront").value
+            let title = document.getElementById("titulo").value;
+            let releaseYear = document.getElementById("anyo").value;
+            let genre = document.getElementById("genero").value;
+            let director = document.getElementById("director").value;
+            let guionista = document.getElementById("guionista").value;
+            let producer = document.getElementById("producer").value;
+            let actores = document.getElementById("actores").value;
+
+            let nuevo = {title:title,releaseYear:releaseYear,genre:genre,director:director,guionista:guionista,producer:producer,actores:actores,_id:idFront}
+            let url = "http://localhost:3000/Peliculas";
+            let param =
+            {
+                headers:{"Content-type":"application/json;charset=UTF-8"},
+                body:JSON.stringify(nuevo),
+                method:"PUT"
+            }
+            let data = await fetch(url,param);
+            let result = await data.genero
+            
+            console.log(result)
+        }
+        catch(error){console.log(error)}
+}
+
+async function postPeliculas()
+{
+        try
+        {
+            
+            let titulo = document.getElementById("titulo").value;
+            let anyo = document.getElementById("anyo").value;
+            let genero = document.getElementById("genero").value;
+            let director = document.getElementById("director").value;
+            let guionista = document.getElementById("guionista").value;
+            let producer = document.getElementById("producer").value;
+            let actores = document.getElementById("actores").value;
+
+            let movie = new Movie(titulo,anyo,genero,director,guionista,producer,actores)
+
+            let url = "http://localhost:3000/Peliculas";
+            let param =
+            {
+                headers:{"Content-type":"application/json;charset=UTF-8"},
+                body:JSON.stringify(movie),
+                method:"POST"
+            }
+            let data = await fetch(url,param);
+            let result = await data.json()
+            
+            console.log(result)
+        }
+        catch(error){console.log(error)}
+}
     
     
 
